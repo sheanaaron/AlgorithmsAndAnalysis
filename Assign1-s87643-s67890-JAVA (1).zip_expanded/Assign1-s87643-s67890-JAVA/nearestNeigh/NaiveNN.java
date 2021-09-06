@@ -6,11 +6,11 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * This class is required to be implemented.  Naive approach implementation.
+ * This class is required to be implemented. Naive approach implementation.
  *
  * 
  */
-public class NaiveNN implements NearestNeigh{
+public class NaiveNN implements NearestNeigh {
 
 	ArrayList<Point> list;
 
@@ -18,11 +18,10 @@ public class NaiveNN implements NearestNeigh{
 		list = new ArrayList<>();
 	}
 
-
 	@Override
 	public void buildIndex(List<Point> points) {
 
-		//adding all points to the list
+		// adding all points to the list
 		list.addAll(points);
 
 	}
@@ -31,35 +30,33 @@ public class NaiveNN implements NearestNeigh{
 	public List<Point> search(Point searchTerm, int k) {
 
 		ArrayList<Point> nearestList = new ArrayList<>();
-		//populate the list with all existing points
+		// populate the list with all existing points
 		nearestList.addAll(list);
-		ArrayList<Point> sorted= new ArrayList<>();
+		ArrayList<Point> sorted = new ArrayList<>();
 
-		nearestList.remove(searchTerm);	
+		nearestList.remove(searchTerm);
 
-		if (nearestList.size()>=1) {
+		if (nearestList.size() >= 1) {
 
-			for (int i=0; i<k; i++)
-			{
+			for (int i = 0; i < k; i++) {
 				Point shortest = nearestList.get(0);
 
-				for (Point currentPoint: nearestList)
-				{
-					
-					if ((currentPoint.distTo(searchTerm) < shortest.distTo(searchTerm))&&(currentPoint.cat).equals(searchTerm.cat)) {
+				for (Point currentPoint : nearestList) {
+
+					if ((currentPoint.distTo(searchTerm) < shortest.distTo(searchTerm))
+							&& (currentPoint.cat).equals(searchTerm.cat)) {
 						shortest = currentPoint;
 					}
 				}
 				sorted.add(shortest);
 				nearestList.remove(shortest);
-				}
-			
+			}
 
 		}
 		return sorted;
 
 	}
-	
+
 //	public List<Point> search(Point searchTerm, int k) {
 //        ArrayList<Point> tempPoints = new ArrayList<>();
 //        ArrayList<Point> returnPoints = new ArrayList<>();
@@ -82,15 +79,14 @@ public class NaiveNN implements NearestNeigh{
 //        return returnPoints;
 //    }
 
-
 	@Override
 	public boolean addPoint(Point point) {
 
-		//returns true when the point is added
+		// returns true when the point is added
 		if (list.contains(point))
-			return false;			
+			return false;
 		else {
-			list.add(point);    
+			list.add(point);
 			return true;
 		}
 
@@ -102,18 +98,17 @@ public class NaiveNN implements NearestNeigh{
 		if (list.contains(point)) {
 			list.remove(point);
 			return true;
-		}
-		else
+		} else {
 			return false;
+		}
 	}
 
 	@Override
 	public boolean isPointIn(Point point) {
-
-		if (list.contains(point))
+		if (list.contains(point)) {
 			return true;
-		else
+		} else {
 			return false;
+		}
 	}
-
 }

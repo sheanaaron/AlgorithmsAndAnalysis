@@ -1,0 +1,8 @@
+#Compile Code
+javac *.java
+
+#Run Code
+java NearestNeighFileBased [approach] [data filename] [command filename] [output filename]
+
+#Current Parameters
+java NearestNeighFileBased naive sampleData.txt test1.in test1.out
